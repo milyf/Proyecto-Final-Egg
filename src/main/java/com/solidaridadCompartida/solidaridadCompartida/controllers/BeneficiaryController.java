@@ -25,8 +25,9 @@ private BeneficiaryService beneficiaryservice;
 private PersonService personservice;
     
 @GetMapping("/register")    
-public String registerBeneficiary(){
+public String registerBeneficiary(ModelMap modelo){
 
+    List<String> institution_types = []
 return "beneficiary_form.html";
 
 } 
