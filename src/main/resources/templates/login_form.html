@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
+    
+    <link rel="stylesheet" type="text/css" href="../static/style_login_css.css">
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- CSS only -->
     <!-- CSS only -->
@@ -35,7 +37,7 @@
                                         <p>Por favor, ingrese a su cuenta</p>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="form2Example11" class="form-control"
+                                            <input type="username" id="form2Example11" class="form-control"
                                                 placeholder="" />
                                             <label class="form-label" for="form2Example11">Nombre de usuario</label>
                                         </div>
@@ -68,6 +70,20 @@
                                         sino una ayuda mutua entre fuerzas que luchan por el mismo objetivo” Samora Machel</p>
                                 </div>
                             </div>
+                              <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                    </div>
+
+                    <div th:if="${success != null}" class="card text-white bg-success mt-3 mensajeExito" >
+                        <div class="card-body">
+                            <h5 class="card-title">success</h5>
+                            <p class="card-text" th:text="${success}"></p>
+                        </div>
+
+                    </div>
                         </div>
                     </div>
                 </div>

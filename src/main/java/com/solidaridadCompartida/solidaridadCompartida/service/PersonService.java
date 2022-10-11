@@ -106,6 +106,37 @@ public class PersonService   {
  
  }
  
+ public void loginPerson(String username, String password) throws MyException{
+ 
+      if( username.isEmpty() || username==null){
+ 
+ throw new MyException("El nombre de usuario no puede ser nulo o estar vacío");
+ } 
+ 
+ if(password.isEmpty() || password==null){
+ 
+ throw new MyException("La contraseña no puede ser nula o estar vacía");
+ }
+ 
+
+ if(personRepository.searchByUsername(username)==null){
+ 
+ throw new MyException("El nombre de usuario no está registrado");
+ 
+ }else{  Person person = new Person();
+ 
+         person=personRepository.searchByUsername(username);
+         Boolean x=person.getPassword().equals(password);
+         if(x==false){
+         
+         throw new MyException("La contraseña ingresada no es correcta");
+          }
+ }
+ 
+ }
+ 
+ 
+ 
  
 }   
     
