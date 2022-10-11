@@ -54,9 +54,10 @@ public String formBeneficiary(@RequestParam(required=false) String username,
         
     } catch (MyException ex) {
         model.put("error", ex.getMessage());
+        System.out.println(username+email+password);
         return "beneficiary_form.html";
     }
-
+ System.out.println(username+email+password);
 return "index.html";
 
 }
