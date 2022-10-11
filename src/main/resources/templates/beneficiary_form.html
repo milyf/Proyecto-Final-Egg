@@ -42,16 +42,13 @@
                     BENEFICIARIO
                 </a>
 
-                <form th:action ="@{/beneficiary/register}" method="POST"
+                <form th:action ="@{/beneficiary/form}" method="POST"
                       class="border p-3 form" enctype="multipart/form-data" > 
 
                     <div class="form-group">
                         <h1> REGISTRAR BENEFICIARIO </h1>
 
-                        <div class="form-group my-3">
-                            <label for="text">Beneficiario</label>
-                            <input type="text" class="form-control" name="user_type" placeholder="Beneficiario" th:value="${user_type}">
-                        </div> 
+    
                         
                         <div class="form-group my-3">
                             <label for="text">Nombre de usuario</label>
@@ -92,63 +89,63 @@
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="toys" value="2" id="toys">
+                            <input class="form-check-input" type="checkbox" name="toys" value="1" id="toys">
                             <label class="form-check-label" for="toys">
                                 Juguetes
                             </label>                               
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="clothing" value="3" id="clothing">
+                            <input class="form-check-input" type="checkbox" name="clothing" value="1" id="clothing">
                             <label class="form-check-label" for="clothing">
                                 Prendas de vestir
                             </label>                              
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="food" value="4" id="food">
+                            <input class="form-check-input" type="checkbox" name="food" value="1" id="food">
                             <label class="form-check-label" for="food">
                                 Alimentos
                             </label>                               
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="monetary_aid" value="5" id="monetary_aid">
+                            <input class="form-check-input" type="checkbox" name="monetary_aid" value="1" id="monetary_aid">
                             <label class="form-check-label" for="monetary_aid">
                                 Ayuda aconomica
                             </label>                               
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="school_supplies" value="6" id="school_supplies">
+                            <input class="form-check-input" type="checkbox" name="school_supplies" value="1" id="school_supplies">
                             <label class="form-check-label" for="school_supplies">
                                 Útiles escolares
                             </label>                               
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="books" value="7" id="books">
+                            <input class="form-check-input" type="checkbox" name="books" value="1" id="books">
                             <label class="form-check-label" for="books">
                                 Libros
                             </label>                               
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="medical_supplies" value="8" id="medical_supplies">
+                            <input class="form-check-input" type="checkbox" name="medical_supplies" value="1" id="medical_supplies">
                             <label class="form-check-label" for="medical_supplies">
                                 Medicamentos
                             </label>                               
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="furnitures" value="9" id="furnitures">
+                            <input class="form-check-input" type="checkbox" name="furnitures" value="1" id="furnitures">
                             <label class="form-check-label" for="furnitures">
                                 Muebles
                             </label>                               
                         </div>
                         
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="legacies" value="10" id="legacies">
+                            <input class="form-check-input" type="checkbox" name="legacies" value="1" id="legacies">
                             <label class="form-check-label" for="legacies">
                                 Legado
                             </label>                               
