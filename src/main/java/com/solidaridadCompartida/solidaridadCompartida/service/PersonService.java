@@ -44,6 +44,29 @@ public class PersonService   {
  return people;
  
  }
+ 
+ public Boolean validatePassword(String str){
+    char ch;
+    boolean capitalFlag = false;
+    boolean lowerCaseFlag = false;
+    boolean numberFlag = false;
+    
+    for(int i=0;i < str.length();i++) {
+        ch = str.charAt(i);
+        if( Character.isDigit(ch)) {
+            numberFlag = true;
+        }
+        else if (Character.isUpperCase(ch)) {
+            capitalFlag = true;
+        } else if (Character.isLowerCase(ch)) {
+            lowerCaseFlag = true;
+        }
+        if(numberFlag && capitalFlag && lowerCaseFlag)
+            return true;
+    }
+    return false;
+
+}
 
  private void validate(String username, String password, String email) throws MyException{
 
@@ -62,9 +85,28 @@ public class PersonService   {
  throw new MyException("El email no puede ser nulo o estar vacío");
  }
 
+ Boolean correctPassword;
+ correctPassword=this.validatePassword(password);
+ if(correctPassword==false){
+ 
+ throw new MyException("La contraseña debe tener al menos un número, un caracter en minúscula y uno en mayúsculas");
+ 
+ }
 
 }
-
+ 
+ public void checkPassword(String password, String password2) throws MyException{
+ 
+ Boolean check= password.equals(password2);
+ if(check==false){
+ 
+ throw new MyException("No coincide la contraseña");
+ 
+ }
+ 
+ }
+ 
+ 
 }   
     
     

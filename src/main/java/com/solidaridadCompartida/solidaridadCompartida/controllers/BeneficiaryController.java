@@ -25,24 +25,27 @@ private BeneficiaryService beneficiaryservice;
 private PersonService personservice;
     
 @GetMapping("/register")    
-public String registerBeneficiary(ModelMap modelo){
+public String registerBeneficiary(){
 
-    List<String> institution_types = []
+
 return "beneficiary_form.html";
 
 } 
 
 @PostMapping("/form")
 public String formBeneficiary(@RequestParam(required=false) String username,
-        @RequestParam(required=false) String password, @RequestParam(required=false) String email, 
+        @RequestParam(required=false) String password, @RequestParam(required=false) String password2, @RequestParam(required=false) String email, 
         @RequestParam(required=false) String name,@RequestParam String institution_type, 
-        @RequestParam Integer voluntary,@RequestParam Integer toys,@RequestParam Integer clothing, 
-        @RequestParam Integer food,@RequestParam Integer monetary_aid,@RequestParam Integer school_supplies, 
-        @RequestParam Integer books,@RequestParam Integer medical_supplies, 
-        @RequestParam Integer furnitures,@RequestParam Integer legacies, ModelMap model){
+        @RequestParam(required=false,defaultValue="0") Integer voluntary,@RequestParam(required=false,defaultValue="0") Integer toys, 
+        @RequestParam(required=false,defaultValue="0") Integer clothing, @RequestParam(required=false,defaultValue="0") Integer food, 
+        @RequestParam(required=false,defaultValue="0") Integer monetary_aid,@RequestParam(required=false,defaultValue="0") Integer school_supplies, 
+        @RequestParam(required=false,defaultValue="0") Integer books,@RequestParam(required=false,defaultValue="0") Integer medical_supplies, 
+        @RequestParam(required=false,defaultValue="0") Integer furnitures,@RequestParam(required=false,defaultValue="0") Integer legacies, 
+        ModelMap model){
 
-    try {
+    try {   
         String user_type = "b";
+        personservice.checkPassword(password, password2);
         personservice.createPerson(username, password, email,user_type );
         beneficiaryservice.createBeneficiary(username, name, institution_type, voluntary, 
                 toys, clothing, food, monetary_aid, school_supplies, books, medical_supplies, furnitures, legacies);
