@@ -34,13 +34,13 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="">Iniciar sesion</a>
+                                <a class="nav-link active" aria-current="page" th:href="@{/login/}">Iniciar sesion</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="beneficiary_form.html">Registrarse como beneficiario</a>
+                                <a class="nav-link active" th:href="@{/beneficiary/register}">Registrarse como beneficiario</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="donor_form.html">Registrarse como donante</a>
+                                <a class="nav-link active" th:href="@{/donor/register}">Registrarse como donante</a>
                             </li>
                         </ul>
                     </div>
