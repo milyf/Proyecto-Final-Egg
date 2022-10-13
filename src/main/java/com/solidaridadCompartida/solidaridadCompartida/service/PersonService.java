@@ -2,6 +2,7 @@
 package com.solidaridadCompartida.solidaridadCompartida.service;
 
 import com.solidaridadCompartida.solidaridadCompartida.entity.Person;
+import com.solidaridadCompartida.solidaridadCompartida.enumeracion.Rol;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.repository.PersonRepository;
 import java.util.ArrayList;
@@ -19,17 +20,16 @@ public class PersonService   {
  private PersonRepository personRepository;
  
  @Transactional
- public void createPerson(String username, String password, String email, String user_type) throws MyException {
+ public void createPerson(String password, String email, String user_type) throws MyException {
      
- validate(username,password,email);
+ validate(password,email);
 
 
  Person person = new Person();
  
- person.setUsername(username);
  person.setPassword(password);
  person.setEmail(email);
- person.setUser_type(user_type);
+
  
  personRepository.save(person);
  
@@ -136,7 +136,7 @@ public class PersonService   {
  }
  
  
- 
+
  
 }   
     

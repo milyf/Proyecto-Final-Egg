@@ -29,10 +29,10 @@ return "login_form.html";
 
     
  @PostMapping("/form")
- public String formLogin(@RequestParam(required=false) String username,@RequestParam(required=false) String password,  ModelMap model){
+ public String formLogin(@RequestParam(required=false) String email,@RequestParam(required=false) String password,  ModelMap model){
  
     try {
-        personservice.loginPerson(username, password);
+        personservice.loginPerson(email, password);
         model.put("sucess"," ");
     } catch (MyException ex) {
         model.put("error", ex.getMessage());

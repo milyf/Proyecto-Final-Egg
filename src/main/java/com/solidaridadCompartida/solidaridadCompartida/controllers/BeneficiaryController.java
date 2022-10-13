@@ -4,6 +4,7 @@ package com.solidaridadCompartida.solidaridadCompartida.controllers;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.service.BeneficiaryService;
 import com.solidaridadCompartida.solidaridadCompartida.service.PersonService;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,11 @@ private BeneficiaryService beneficiaryservice;
 private PersonService personservice;
     
 @GetMapping("/register")    
-public String registerBeneficiary(){
+public String registerBeneficiary(ModelMap modelo){
 
+ List<String> institutions_types= beneficiaryservice.ListInstitutionsTypes() ;
+
+ modelo.addAttribute("institutions_types",institutions_types );
 
 return "beneficiary_form.html";
 
