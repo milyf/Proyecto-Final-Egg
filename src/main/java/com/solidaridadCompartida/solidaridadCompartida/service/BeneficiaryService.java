@@ -156,6 +156,44 @@ if(name.isEmpty() || name==null){
  
  }
  
+ public void loginPerson(String email, String password) throws MyException{
+ 
+  if( email.isEmpty() || email==null){
+ 
+ throw new MyException("El email no puede ser nulo o estar vacío");
+ } 
+ 
+ if(password.isEmpty() || password==null){
+ 
+ throw new MyException("La contraseña no puede ser nula o estar vacía");
+ }
+ 
+
+ if(beneficiaryRepository.searchByEmail(email)==null){
+ 
+ throw new MyException("El email no está registrado");
+ 
+ }else{  
+ 
+       
+ Optional<Beneficiary> response = beneficiaryRepository.searchByEmail(email);
+ 
+
+    Beneficiary beneficiary= response.get();
+    beneficiary.setEmail(email);
+    beneficiary.setPassword(password);
+
+
+ Boolean x=beneficiary.getPassword().equals(password);
+      
+         if(x==false){
+         
+         throw new MyException("La contraseña ingresada no es correcta");
+          }
+ }
+ 
+ }
+ 
  public List<String> ListInstitutionsTypes(){
 
 List<String> institutions_types= new ArrayList();

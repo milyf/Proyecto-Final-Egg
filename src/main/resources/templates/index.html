@@ -1,13 +1,13 @@
-<html xmlns:th="http://thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solaridad compartida</title>
-    
-    <link rel="stylesheet" type="text/css" th:href="@{/style_login_css.css}">
-    
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/style_login_css.css}">
+    <link href="style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
@@ -17,7 +17,7 @@
     <header>
 
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar" aria-label="Offcanvas navbar large">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" aria-label="Offcanvas navbar large">
             <div class="container-fluid" id="navbar">
                 <a class="navbar-brand" id="tit-navbar" href="#"> Solaridad compartida</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -37,11 +37,13 @@
                                 <a class="nav-link active" aria-current="page" th:href="@{/login/}">Iniciar sesion</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" th:href="@{/beneficiary/register}">Registrarse como beneficiario</a>
+                                <a class="nav-link active" th:href="@{/beneficiary/register}" >Registrarse como Beneficiario</a>
                             </li>
+                            
                             <li class="nav-item">
-                                <a class="nav-link active" th:href="@{/donor/register}">Registrarse como donante</a>
+                                <a class="nav-link active" th:href="@{/donor/register}" >Registrarse como Donador</a>
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -58,15 +60,16 @@
 
 
         <div class="blocks">
-            <h1 class="subnav-hero-headline">Foundation <small>by ZURB</small></h1>
+            <h1 class="subnav-hero-headline">Conexiones<small> como</small></h1>
             <ul class="subnav-hero-subnav">
-                <li><a href="#" class="op">Take Action!</a></li>
-                <li><a href="#" class="op">Carpe Diem!</a></li>
+                <li><a href="#" class="op">Beneficiario!</a></li>
+                <li><a href="#" class="op">Donante!</a></li>
                 <li><a target="_blank" href="https://zurb.com/responsive" class="op">Just do it!</a></li>
             </ul>
         </div>
     </header>
-    <main class="container py-5">
+
+    <main class="container py-5" id="mainFormBeneficiary">
 
 
 
@@ -178,14 +181,12 @@
 
     </main>
 
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" id="footer">
-        <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                <svg class="bi" width="30" height="24">
-                    <use xlink:href="#bootstrap" />
-                </svg>
-            </a>
-            <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Company, Inc</span>
+    <footer class="footer" >
+        <div>
+
+            <p class="textFooter">&copy; 2022 Solaridad compartida. </p>
+
+
         </div>
 
 

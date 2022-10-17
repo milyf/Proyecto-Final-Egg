@@ -22,104 +22,247 @@
         border-top-right-radius: .3rem;
         border-bottom-right-radius: .3rem;
     }
-    
-    
-    .body{
-    background-color: #FBEEEC ;
 }
 
-#navbar{
+.body {
+  background-color: #FBEEEC;
+}
 
-  background-color: #FB6754  ;
+#navbar {
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+
+#titNavbar {
+  align-content: center;
+  color: #0c0000;
+
+
+
 }
 
 .sticky-topbar {
-    width: 100%;
-  }
+  width: 100%;
+}
 
 
-  .blocks{
-    text-align: center;
-    background: #FC8A70 ;  /* #FC8A70  #FB4666 */
-    transition: 2s;
-    background-size: cover;
-    position: relative;
-    overflow: visible;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    height: 300px;
-    block-size: border-box;
-    border: 2px solid black;
-    border-radius: 10px;
-    margin: 2px 2px;
-  }
-  .blocks:hover{
-    background-color:#FB0707 ;
-  }
+.blocks {
+  text-align: center;
+  background: #FC8A70;
+  /* #FC8A70  #FB4666 */
+  transition: 2s;
+  background-size: cover;
+  position: relative;
+  overflow: visible;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 300px;
+  block-size: border-box;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 2px 2px;
+}
 
-  .subnav-hero-section .subnav-hero-headline {
-    color: #fefefe;
-  }
+.blocks:hover {
+  background-color: #FB0707;
+}
 
-  .subnav-hero-subnav {
-    float: none;
-    position: absolute;
-    text-align: center;
-    margin: 0 auto;
-    bottom: 0;
-    width: 100%;
-  }
+.subnav-hero-section .subnav-hero-headline {
+  color: #fefefe;
+}
 
-  .subnav-hero-subnav li {
-    float: none;
-    display: inline-block;
-  }
+.subnav-hero-subnav {
+  float: none;
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+  bottom: 0;
+  width: 100%;
+}
 
-  .subnav-hero-subnav li a {
-    padding: 0.9rem 1rem;
-    font-size: 0.75rem;
-    color: #fefefe;
-    text-transform: uppercase;
-    display: block;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: all 0.35s ease-in-out;
-  }
+.subnav-hero-subnav li {
+  float: none;
+  display: inline-block;
+}
 
-  .subnav-hero-subnav li a.is-active {
-    background: rgba(254, 254, 254, 0.15);
-  }
+.subnav-hero-subnav li a {
+  padding: 0.9rem 1rem;
+  font-size: 0.75rem;
+  color: #fefefe;
+  text-transform: uppercase;
+  display: block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.35s ease-in-out;
+}
 
-  .subnav-hero-subnav li a:hover {
-    background: rgba(6, 116, 195, 0.15);
-  }
-  .op:hover{
-    background-color: black;
-  }
+.subnav-hero-subnav li a.is-active {
+  background: rgba(254, 254, 254, 0.15);
+}
 
- .card:hover{
-    font-size: 20px;
-    border-color: #FC8A70;
+.subnav-hero-subnav li a:hover {
+  background: rgba(6, 116, 195, 0.15);
+}
 
+.op:hover {
+  background-color: black;
+}
 
- }
- #offcanvasNavbar2{
-    background-color: aqua;
- }
- 
- 
- 
-  #footer{
-    background-color: black;
-    display: block;
-  }
+.card:hover {
+  font-size: 20px;
+  border-color: #FC8A70;
+
 
 }
 
+#offcanvasNavbar2 {
+  background-color: aqua;
+}
+
+
+
+
+.footer {
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  border-radius: 4px;
+  margin-bottom: 2px;
+  width: 100%;
+  height: 81px;
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  /*justify-content: flex-end;*/
+  margin-top: auto;
+}
+
+.textFooter {
+  display: block;
+  font-size: 17px;
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  margin-top: 30px;
+
+}
+
+.footerBeni {
+  display: block;
+}
+
+.titRegistrer {
+
+  text-align: center;
+
+
+}
+
+.labelForm {
+  font-size: 20px;
+}
+
+#formComplete {
+  align-content: left;
+}
+
+
+.form-control:hover {
+  border-color: #FC8A70;
+}
+
+#mainFormBeneficiary {
+  justify-self: end;
+}
+
+main {
+  padding: 20px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+}
+
+.mainFormDonnor {
+
+  justify-self: start;
+
+
+}
+
+#formDonnor {
+
+  display: inline-block;
+  margin-left: 30px;
+  margin-right: 10px;
+  margin-top: 10PX;
+  width: 45%;
+  border: black;
+
+
+}
+
+#buttonRegis {
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #f7a469, #da4c4f, #a83e66, #861b66);
+  border: 1.5px solid black;
+}
+
+
+
+.infoDonnor {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  justify-self: end;
+  margin-top: 72px;
+  margin-bottom: 30px;
+
+
+  width: 45%;
+
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+.titInfo {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 22px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.infoText {
+  margin-top: 35px;
+
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#buttonInfo {
+  margin-left: 42%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  background: linear-gradient(to right, #f7a469, #da4c4f, #a83e66, #861b66);
+  border: 1.5px solid black;
+}
+
+
+    
+    
+    
