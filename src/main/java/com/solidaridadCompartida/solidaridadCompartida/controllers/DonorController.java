@@ -3,7 +3,7 @@ package com.solidaridadCompartida.solidaridadCompartida.controllers;
 
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.service.DonorService;
-import com.solidaridadCompartida.solidaridadCompartida.service.PersonService;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class DonorController {
     
  @Autowired DonorService donorservice;
  
- @Autowired PersonService personservice;
+
  
  @GetMapping("/register")
  public String registerDonor(){
@@ -30,15 +30,19 @@ public class DonorController {
  }   
     
  @PostMapping("/form") 
- public String formDonor(@RequestParam String username,@RequestParam String password, @RequestParam String email,
+ public String formDonor(@RequestParam String password,@RequestParam String password2, @RequestParam String email,
          @RequestParam String name, @RequestParam String donor_type, @RequestParam Integer voluntary, ModelMap model){
  
-     try {String user_type="d";
-         personservice.createPerson(username, password, email, user_type);
-         donorservice.createDonor(username, name, donor_type, voluntary);
+     try {
+     donorservice.createDonor(email, password, password2, name, donor_type, voluntary);
          model.put("success", "Su usuario fue registrado correctamente");
      } catch (MyException ex) {
          model.put("error", ex.getMessage());
+         model.put("emai",email);
+        model.put("password",password);
+        model.put("password2",password2);
+        model.put("name",name);
+       
          return "donor_form.html";
      }
  

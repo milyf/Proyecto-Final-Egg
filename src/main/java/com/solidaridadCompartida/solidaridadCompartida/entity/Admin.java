@@ -1,6 +1,6 @@
 
 
-package com.solidaridadCompartida.solidaridadCompartida.entity;
+/*package com.solidaridadCompartida.solidaridadCompartida.entity;
 
 
 import javax.persistence.Entity;
@@ -17,4 +17,4 @@ public class Admin extends Person {
     
     
     
-}
+}*/

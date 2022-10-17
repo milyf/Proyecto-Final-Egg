@@ -3,6 +3,7 @@ package com.solidaridadCompartida.solidaridadCompartida.controllers;
 
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.service.PersonService;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ return "login_form.html";
 
 }
 
-    
+   
  @PostMapping("/form")
  public String formLogin(@RequestParam(required=false) String email,@RequestParam(required=false) String password,  ModelMap model){
  

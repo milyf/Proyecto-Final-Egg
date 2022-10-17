@@ -13,6 +13,9 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,13 +28,15 @@ public class BeneficiaryService implements UserDetailsService {
  private BeneficiaryRepository beneficiaryRepository;
  
  @Transactional
- public void createBeneficiary(String id,String name,String email, String institution_type, Integer voluntary,Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies)throws MyException {
+ public void createBeneficiary(String email,String password,String password2,String name, String institution_type, Integer voluntary,Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies)throws MyException {
  
- validate(id,name,email);  
+ validate(email,password,name);  
+ checkPassword(password,password2);
  
  Beneficiary beneficiary = new Beneficiary();
  
- 
+ beneficiary.setEmail(email);
+ beneficiary.setPassword(password);
  beneficiary.setName(name);
  beneficiary.setInstitution_type(institution_type);
  beneficiary.setVoluntary(voluntary);
@@ -64,10 +69,10 @@ public class BeneficiaryService implements UserDetailsService {
  
  }
  
- public void modifyDonor(String username, String name, Integer voluntary, Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies) throws MyException{
+ public void modifyBeneficiary(String email,String password,String name, Integer voluntary, Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies) throws MyException{
  
- validate(username,name);    
- Optional<Beneficiary> response = beneficiaryRepository.findById(username);
+ validate(email,password,name);    
+ Optional<Beneficiary> response = beneficiaryRepository.searchByEmail(email);
    
 if(response.isPresent()){
 
@@ -90,7 +95,30 @@ if(response.isPresent()){
   
  } 
  
- private void validate(String name, String password, String email) throws MyException{
+ public Boolean validatePassword(String str){
+    char ch;
+    boolean capitalFlag = false;
+    boolean lowerCaseFlag = false;
+    boolean numberFlag = false;
+    
+    for(int i=0;i < str.length();i++) {
+        ch = str.charAt(i);
+        if( Character.isDigit(ch)) {
+            numberFlag = true;
+        }
+        else if (Character.isUpperCase(ch)) {
+            capitalFlag = true;
+        } else if (Character.isLowerCase(ch)) {
+            lowerCaseFlag = true;
+        }
+        if(numberFlag && capitalFlag && lowerCaseFlag)
+            return true;
+    }
+    return false;
+
+}
+ 
+ private void validate(String email,String password, String name) throws MyException{
 
 if(name.isEmpty() || name==null){
  
@@ -142,8 +170,26 @@ return institutions_types;
 } 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    
+                Optional<Beneficiary> response = beneficiaryRepository.searchByEmail(email);
+   
+if(response.isPresent()){
+Beneficiary beneficiary = response.get();
+
+List<GrantedAuthority> permissions = new ArrayList();
+
+GrantedAuthority p= new SimpleGrantedAuthority("ROLE_" + beneficiary.getRol().toString());
+        
+ permissions.add(p);
+        
+return new User(beneficiary.getEmail(),beneficiary.getPassword(),permissions);
+   
+}else{
+
+return null;
+
+}
     }
 
  

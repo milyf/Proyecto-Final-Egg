@@ -1,12 +1,14 @@
 
 package com.solidaridadCompartida.solidaridadCompartida.service;
 
+import com.solidaridadCompartida.solidaridadCompartida.entity.Donor;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Person;
 import com.solidaridadCompartida.solidaridadCompartida.enumeracion.Rol;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.repository.PersonRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,16 +22,17 @@ public class PersonService   {
  private PersonRepository personRepository;
  
  @Transactional
- public void createPerson(String password, String email, String user_type) throws MyException {
+ public void createPerson(String password,String password2, String email,Rol rol) throws MyException {
      
  validate(password,email);
-
+ checkPassword(password,password2);
 
  Person person = new Person();
  
  person.setPassword(password);
  person.setEmail(email);
-
+ person.setRol(rol);
+ person.setAlta(Boolean.TRUE);
  
  personRepository.save(person);
  
@@ -68,12 +71,9 @@ public class PersonService   {
 
 }
 
- private void validate(String username, String password, String email) throws MyException{
+ private void validate(String password, String email) throws MyException{
 
- if( username.isEmpty() || username==null){
  
- throw new MyException("El nombre de usuario no puede ser nulo o estar vacío");
- } 
  
  if(password.isEmpty() || password==null){
  
@@ -106,9 +106,9 @@ public class PersonService   {
  
  }
  
- public void loginPerson(String username, String password) throws MyException{
+ public void loginPerson(String email, String password) throws MyException{
  
-      if( username.isEmpty() || username==null){
+  if( email.isEmpty() || email==null){
  
  throw new MyException("El nombre de usuario no puede ser nulo o estar vacío");
  } 
@@ -119,13 +119,18 @@ public class PersonService   {
  }
  
 
- if(personRepository.searchByUsername(username)==null){
+ if(personRepository.searchByEmail(email)==null){
  
  throw new MyException("El nombre de usuario no está registrado");
  
- }else{  Person person = new Person();
+ }else{  
+ Optional<Person> response = personRepository.searchByEmail(email);
  
-         person=personRepository.searchByUsername(username);
+
+    Person person = response.get();
+    person.setEmail(email);
+    person.setPassword(password);
+
          Boolean x=person.getPassword().equals(password);
          if(x==false){
          
@@ -139,7 +144,7 @@ public class PersonService   {
 
  
 }   
-    
+   
     
     
 
