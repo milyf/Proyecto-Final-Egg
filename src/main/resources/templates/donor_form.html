@@ -18,7 +18,7 @@
 
             <nav class="navbar navbar-expand-lg" id="navbar" aria-label="Offcanvas navbar large">
                 <div class="container-fluid" id="navbar">
-                    <a class="navbar-brand" id="titNavbar" href="#"> SOLARIDAD COMPARTIDA</a>
+                    <a class="navbar-brand" id="titNavbar" th:href="@{/}"> Solidaridad Compartida</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
                         <span class="navbar-toggler-icon"></span>
@@ -33,11 +33,9 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Iniciar sesion</a>
+                                    <a class="nav-link active" aria-current="page" th:href="@{/login/}">Iniciar sesion</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#">Registrarse</a>
-                                </li>
+                               
 
                             </ul>
                         </div>
