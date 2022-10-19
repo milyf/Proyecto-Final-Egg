@@ -28,7 +28,7 @@ public class BeneficiaryService implements UserDetailsService {
  private BeneficiaryRepository beneficiaryRepository;
  
  @Transactional
- public void createBeneficiary(String email,String password,String password2,String name, String institution_type, Integer voluntary,Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies)throws MyException {
+ public void createBeneficiary(String email,String password,String password2,String name, String institution_type)throws MyException {
  
  validate(email,password,name);  
  checkPassword(password,password2);
@@ -39,16 +39,7 @@ public class BeneficiaryService implements UserDetailsService {
  beneficiary.setPassword(password);
  beneficiary.setName(name);
  beneficiary.setInstitution_type(institution_type);
- beneficiary.setVoluntary(voluntary);
- beneficiary.setToys(toys);
- beneficiary.setClothing(clothing);
- beneficiary.setFood(food);
- beneficiary.setMonetary_aid(monetary_aid);
- beneficiary.setSchool_supplies(school_supplies);
- beneficiary.setBooks(books);
- beneficiary.setMedical_supplies(medical_supplies);
- beneficiary.setFurnitures(furnitures);
- beneficiary.setLegacies(legacies);
+
  beneficiary.setRol(Rol.BENEFICIARY);
  beneficiary.setAlta(Boolean.TRUE);
  beneficiaryRepository.save(beneficiary);
@@ -69,7 +60,7 @@ public class BeneficiaryService implements UserDetailsService {
  
  }
  
- public void modifyBeneficiary(String email,String password,String name, Integer voluntary, Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies) throws MyException{
+ public void modifyBeneficiary(String email,String password,String name) throws MyException{
  
  validate(email,password,name);    
  Optional<Beneficiary> response = beneficiaryRepository.searchByEmail(email);
@@ -78,18 +69,8 @@ if(response.isPresent()){
 
     Beneficiary beneficiary = response.get();
     beneficiary.setName(name);
-    beneficiary.setVoluntary(voluntary);
-    beneficiary.setToys(toys);
-    beneficiary.setClothing(clothing);
-    beneficiary.setFood(food);
-    beneficiary.setMonetary_aid(monetary_aid);
-    beneficiary.setSchool_supplies(school_supplies);
-    beneficiary.setBooks(books);
-    beneficiary.setMedical_supplies(medical_supplies);
-    beneficiary.setFurnitures(furnitures);
-    beneficiary.setLegacies(legacies);
+    
     beneficiaryRepository.save(beneficiary);
-
 }
 
   

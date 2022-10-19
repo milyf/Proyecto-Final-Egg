@@ -16,23 +16,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 public class Beneficiary extends Person {
     
-   
     private String name;
     private String institution_type;
-    private Integer voluntary;
-    private Integer toys;
-    private Integer clothing;
-    private Integer food;
-    private Integer monetary_aid;
-    private Integer school_supplies;
-    private Integer books;
-    private Integer medical_supplies;
-    private Integer furnitures;
-    private Integer legacies;
-
-    
-    
-
-    
+  
+  
     
 }

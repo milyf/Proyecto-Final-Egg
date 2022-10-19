@@ -28,9 +28,7 @@ public Beneficiary searchByname(@Param("name") String name);
 
 public List<Beneficiary> searchByInstitutionType(@Param("institution_type") String institution_type );     
     
-@Query("SELECT b FROM Beneficiary b WHERE b.voluntary = :voluntary ")
-
-public List<Beneficiary> searchByVoluntary(@Param("voluntary") Integer voluntary);     
+    
     
     
 }

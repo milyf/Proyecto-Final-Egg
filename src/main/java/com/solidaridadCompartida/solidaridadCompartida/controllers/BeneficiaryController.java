@@ -51,10 +51,8 @@ public String formBeneficiary(
 
     try {   
     beneficiaryservice.createBeneficiary(email,password,password2,name, institution_type, voluntary, 
-                toys, clothing, food, monetary_aid, school_supplies, books, medical_supplies, furnitures, legacies);
- 
-        
-        model.put("success", "Su usuario fue registrado correctamente");
+               );
+     model.put("success", "Su usuario fue registrado correctamente");
         
     } catch (MyException ex) {
         model.put("error", ex.getMessage());
