@@ -11,12 +11,18 @@ import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
 
 @Service
-public class PersonService   {
+public class PersonService  implements UserDetailsService   {
  
  @Autowired
  private PersonRepository personRepository;
@@ -139,6 +145,28 @@ public class PersonService   {
  }
  
  }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+               Optional<Person> response = personRepository.searchByEmail(email);
+   
+if(response.isPresent()){
+Person person = response.get();
+
+List<GrantedAuthority> permissions = new ArrayList();
+
+GrantedAuthority p= new SimpleGrantedAuthority("ROLE_" + person.getRol().toString());
+        
+ permissions.add(p);
+        
+return new User(person.getEmail(),person.getPassword(),permissions);
+   
+}else{
+
+throw new UsernameNotFoundException("No se pudo cargar el usuario");
+
+}
+    }
  
  
 

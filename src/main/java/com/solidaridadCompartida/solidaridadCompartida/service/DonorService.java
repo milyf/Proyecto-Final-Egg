@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,7 +35,7 @@ public class DonorService implements UserDetailsService {
 Donor donor = new Donor();
 
 donor.setEmail(email);
-donor.setPassword(password);
+donor.setPassword(new BCryptPasswordEncoder().encode(password));
 donor.setName(name);
 donor.setDonor_type(donor_type);
 donor.setVoluntary(voluntary);
@@ -197,6 +198,7 @@ GrantedAuthority p= new SimpleGrantedAuthority("ROLE_" + donor.getRol().toString
 return new User(donor.getEmail(),donor.getPassword(),permissions);
    
 }else{
+
 
 return null;
 

@@ -66,7 +66,7 @@ public String formBeneficiary(
         return "beneficiary_form.html";
     }
 
-return "index.html";
+return "redirect:/?success=true";
 
 }
 

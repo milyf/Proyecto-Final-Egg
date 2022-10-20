@@ -1,6 +1,7 @@
 
 package com.solidaridadCompartida.solidaridadCompartida.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,25 @@ public class ControllerPortal {
   return "index.html";
   
   } 
+  
+@PreAuthorize("hasAnyRole('ROLE_DONOR')")
+@GetMapping("/indexD")
+public String index_D(){
+
+return "index_D.html";
+
+} 
+
+
+@PreAuthorize("hasAnyRole('ROLE_BENEFICIARY')")
+@GetMapping("/indexB")
+public String index_B(){
+
+return "index_B.html";
+
+} 
+
+}
 
 /*  
 @GetMapping("/register")
@@ -43,4 +63,4 @@ return "login_form.html";
 
   
     
-}
+

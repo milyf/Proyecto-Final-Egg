@@ -46,7 +46,7 @@ public class DonorController {
          return "donor_form.html";
      }
  
- return "index.html";
+ return "redirect:/?success=true";
  
  
  }

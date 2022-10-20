@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,7 +37,7 @@ public class BeneficiaryService implements UserDetailsService {
  Beneficiary beneficiary = new Beneficiary();
  
  beneficiary.setEmail(email);
- beneficiary.setPassword(password);
+ beneficiary.setPassword(new BCryptPasswordEncoder().encode(password));
  beneficiary.setName(name);
  beneficiary.setInstitution_type(institution_type);
  beneficiary.setVoluntary(voluntary);

@@ -35,7 +35,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" th:href="@{/login/}">Iniciar sesion</a>
                                 </li>
-                               
+
 
                             </ul>
                         </div>
@@ -51,19 +51,19 @@
                 <h3 class="titRegistrer">REGISTRAR DONADOR</h3>
 
                 <form th:action="@{/donor/form}" method="POST" class="border p-3 form" enctype="multipart/form-data" >
-                     
+
                     <div class="form-group my-3">
                         <label for="text" class="labelForm">Nombre completo</label>
                         <input type="text" class="form-control" name="name" placeholder="Nombre completo"
                                th:value="${name}">
                     </div>
-                    
-                     <div class="form-group my-3">
+
+                    <div class="form-group my-3">
                         <label for="text" class="labelForm">Tipo de Donador</label>
                         <input type="donor_type" class="form-control" name="donor_type" placeholder="donor_type" th:value="${donor_type}">
                     </div>
-                    
-                    
+
+
                     <div class="form-group my-3">
                         <label for="text" class="labelForm">Email</label>
                         <input type="email" class="form-control" name="email" placeholder="Email" th:value="${email}">
@@ -81,17 +81,32 @@
                         <input type="password" class="form-control" name="password2" placeholder="Repetir contraseña"
                                th:value="${password2}">
                     </div>
-                    
-                     <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="voluntary" value="1" id="voluntary">
-                            <label class="form-check-label" for="voluntary">
-                                Quiere recibir notificaciones acerca de trabajo voluntario?
-                            </label>                           
-                        </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="voluntary" value="1" id="voluntary">
+                        <label class="form-check-label" for="voluntary">
+                            Quiere recibir notificaciones acerca de trabajo voluntario?
+                        </label>                           
+                    </div>
 
                     <button type="submit" class="btn btn-primary" id="buttonRegis"> Registrame </button>
 
                 </form>
+
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <div th:if="${sucess != null}" class="card text-white bg-success mt-3 mensajeExito" >
+                    <div class="card-body">
+                        <h5 class="card-title">sucess</h5>
+                        <p class="card-text" th:text="${sucess}"></p>
+                    </div>
+
+                </div>
 
             </div>
 
