@@ -7,6 +7,7 @@ package com.solidaridadCompartida.solidaridadCompartida.repository;
 
 import com.solidaridadCompartida.solidaridadCompartida.entity.Beneficiary;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,9 +16,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, String> {
     
-@Query("SELECT b FROM Beneficiary b WHERE b.username = :username")
+@Query("SELECT b FROM Beneficiary b WHERE b.email = :email")
 
-public Beneficiary searchByUsername(@Param("username") String username);    
+public Optional<Beneficiary> searchByEmail(@Param("email") String email);    
     
 @Query("SELECT b FROM Beneficiary b WHERE b.name = :name")
 
@@ -29,7 +30,7 @@ public List<Beneficiary> searchByInstitutionType(@Param("institution_type") Stri
     
 @Query("SELECT b FROM Beneficiary b WHERE b.voluntary = :voluntary ")
 
-public List<Beneficiary> searchByVoluntary(@Param("voluntary") String voluntary);     
+public List<Beneficiary> searchByVoluntary(@Param("voluntary") Integer voluntary);     
     
     
 }

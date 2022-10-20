@@ -2,40 +2,38 @@
 
 package com.solidaridadCompartida.solidaridadCompartida.entity;
 
+import com.solidaridadCompartida.solidaridadCompartida.enumeracion.Rol;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import lombok.Data;
+
 import org.hibernate.annotations.GenericGenerator;
 
 
 
-@Getter @Setter 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) 
+@Data
 public class Person {
     
     
-       @Id
-    private String username;
+   @Id
+   @GeneratedValue(generator = "uuid")
+   @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     
     private String password;
     
     private String email;
-    
-    private String user_type; 
 
-    public Person() {
-    }
-
-    public Person(String username, String password, String email, String user_type) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.user_type = user_type;
-    }
-
-  
-     
+   @Enumerated(EnumType.STRING)
+    private Rol rol;
+   
+    private Boolean alta;  
     
 }
