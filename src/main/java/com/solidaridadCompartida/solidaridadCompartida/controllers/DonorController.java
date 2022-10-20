@@ -4,8 +4,6 @@ package com.solidaridadCompartida.solidaridadCompartida.controllers;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.service.DonorService;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,10 +29,12 @@ public class DonorController {
     
  @PostMapping("/form") 
  public String formDonor(@RequestParam String password,@RequestParam String password2, @RequestParam String email,
-         @RequestParam String name, @RequestParam String donor_type, @RequestParam Integer voluntary, ModelMap model){
+         @RequestParam String name, @RequestParam String donor_type,@RequestParam String voluntaryType, @RequestParam Boolean voluntary,
+         ModelMap model){
  
      try {
-     donorservice.createDonor(email, password, password2, name, donor_type, voluntary);
+     donorservice.createDonor( email, password, password2,
+            name, donor_type, voluntary, voluntaryType);
          model.put("success", "Su usuario fue registrado correctamente");
      } catch (MyException ex) {
          model.put("error", ex.getMessage());
