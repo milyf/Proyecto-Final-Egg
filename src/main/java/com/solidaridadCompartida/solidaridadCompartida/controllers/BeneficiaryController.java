@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,8 +71,44 @@ return "redirect:/?success=true";
 
 }
 
+@PreAuthorize("hasAnyRole('ROLE_BENEFICIARY')")
+@GetMapping("/update")
+public String updateBeneficiary(ModelMap model){
+return "edit_beneficiary.html";
+
+}
 
 
+@PreAuthorize("hasAnyRole('ROLE_BENEFICIARY')")
+@PostMapping("/update/form")
+public String updateFormBeneficiary(@RequestParam(required=false) String email,@RequestParam(required=false) String password, 
+        @RequestParam(required=false) String name,@RequestParam(required=false)String institution_type, 
+        @RequestParam(required=false,defaultValue="0") Integer voluntary,@RequestParam(required=false,defaultValue="0") Integer toys, 
+        @RequestParam(required=false,defaultValue="0") Integer clothing, @RequestParam(required=false,defaultValue="0") Integer food, 
+        @RequestParam(required=false,defaultValue="0") Integer monetary_aid,@RequestParam(required=false,defaultValue="0") Integer school_supplies, 
+        @RequestParam(required=false,defaultValue="0") Integer books,@RequestParam(required=false,defaultValue="0") Integer medical_supplies, 
+        @RequestParam(required=false,defaultValue="0") Integer furnitures,@RequestParam(required=false,defaultValue="0") Integer legacies, 
+        ModelMap model){
+    
+    try {
+        beneficiaryservice.modifyBeneficiary(email, password, name, voluntary, toys, clothing, food, monetary_aid, school_supplies, books, medical_supplies, furnitures, legacies);
+     
+        model.put("success", "Su usuario fue actualizado correctamente");
+        
+        
+    } catch (MyException ex) {
+        
+        model.put("error", ex.getMessage());
+        model.put("emai",email);
+        model.put("password",password);
+        model.put("name",name);
+     
+        return "/update/form?error=true"; 
+    }
+
+return "redirect:/indexB?success=true";
+
+} 
 
 
 

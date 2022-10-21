@@ -61,7 +61,10 @@ return "login_form.html";
         }else if (request.isUserInRole("ROLE_BENEFICIARY")){
         
          return "redirect:/indexB";
-        } else{
+        }else if (request.isUserInRole("ROLE_ADMIN")){
+        return "redirect:/admin/dashboard";
+        
+        }else{
         
         return "redirect:/index";
         

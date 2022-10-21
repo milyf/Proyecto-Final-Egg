@@ -19,6 +19,7 @@ public Optional<Person> searchByEmail(@Param("email") String email);
         
 @Query("SELECT p FROM Person p WHERE p.rol = :rol ")
 
-public Optional<Person> searchByType(@Param("rol") String rol);    
+public Optional<Person> searchByType(@Param("rol") String rol); 
+
     
 }

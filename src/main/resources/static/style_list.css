@@ -1,0 +1,171 @@
+html{
+    height: 100%;
+}
+
+body{
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #faecea;
+}
+
+
+header{
+    display: flex;
+    min-height: 70px;
+    justify-content: space-between;
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    align-items: center;
+    padding: 10px;
+
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo h3{
+    color: aliceblue;
+}
+
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.link{
+    align-items: center;
+    text-decoration: none;
+    color: aliceblue;
+    padding-right: 10px;
+}
+
+.link:hover{
+    color: black;
+    font-weight: 600;
+}
+
+#title{
+    padding-top: 30px;
+    display: inline-block;
+    color: #000;
+    background: #fff;
+    mix-blend-mode: multiply;
+    position: relative;
+    left: 40%;
+}
+
+#title:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, red, yellow);
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 0;
+    left: 0%;
+}
+
+
+#title2{
+    padding-top: 30px;
+    display: inline-block;
+    color: #000;
+    background: #fff;
+    mix-blend-mode: multiply;
+    position: relative;
+    left: 32%;
+}
+
+#title2:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, red, yellow);
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 0;
+    left: 0%;
+}
+
+table{
+   
+    background-color: #faecea;
+    border: 1px solid gray;
+    font-size: x-small;
+}
+
+thead td{
+    border: 1px solid rgb(224, 223, 223);
+    
+}
+
+tbody td{
+    border: 1px solid rgb(224, 223, 223);
+}
+
+.update{
+    cursor: pointer;
+    background: rgb(3, 172, 3);
+    color: white; font-size: 14px; line-height: 14px; padding: 6px; border-radius: 6px; font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none;   border: 1px solid rgb(64, 206, 28); display: inline-block;}
+    .update:hover {
+        color: black; }
+    .update:active {
+    background: white; }
+
+.delete{
+    background: rgb(212, 18, 18);
+    color: white; font-size: 14px; line-height: 14px; padding: 6px; border-radius: 6px; font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none;   border: 1px solid rgb(212, 18, 18); display: inline-block;}
+    .delete:hover {
+        color: black; }
+    .delete:active {
+    background: white;
+}
+
+
+footer{
+    
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    margin-top: auto;
+}
+
+footer p{
+   
+    text-align: center;
+}
+
+@media (max-width:700){
+    header{
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    nav{
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    table{
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+
+}
+    main{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}
+
+
+
