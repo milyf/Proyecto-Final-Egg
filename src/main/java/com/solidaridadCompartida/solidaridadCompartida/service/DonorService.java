@@ -70,7 +70,7 @@ if(response.isPresent()){
     donor.setVoluntary(voluntary);
     donorRepository.save(donor);
 
-}
+} else {throw new MyException("");}
 
 
 

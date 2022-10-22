@@ -34,6 +34,11 @@
 
         <!--main-->
         <main>
+            <div th:if="${param.success}">
+                <div class="alert alert-success alert-dismissible fade show">
+                    <span type="button" class="close" data-dismiss="alert" aria-label="close">&times;</span> 
+                    <span> <strong>El usuario ha sido elminado exitosamente</strong> </span>
+                </div> </div> 
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -62,8 +67,8 @@
                                     <td th:text="${donor.voluntary}"></td>
                                     <td th:text="${donor.alta}"></td>
                                     <td></td>
-                                    <td ><a href="#" class="update">Modificar</a> </td>
-                                    <td ><a href="#" class="delete">Eliminar</a></td>
+                                    <td ><a th:href="@{/admin/modifyDonor/{email}(email = ${donor.email})}" class="update">Modificar</a> </td>
+                                    <td ><a th:href="@{/admin/hardDeleteDonor/{email}(email = ${donor.email})}" class="delete">Eliminar</a></td>
                                 </tr>
 
                             </tbody>
