@@ -28,7 +28,8 @@ public class BeneficiaryService implements UserDetailsService {
  private BeneficiaryRepository beneficiaryRepository;
  
  @Transactional
- public void createBeneficiary(String email,String password,String password2,String name, String institution_type)throws MyException {
+ public void createBeneficiary(String email,String password,String password2,String name, 
+         String institution_type)throws MyException {
  
  validate(email,password,name);  
  checkPassword(password,password2);

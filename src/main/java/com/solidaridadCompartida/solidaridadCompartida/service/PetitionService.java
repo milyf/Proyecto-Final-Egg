@@ -2,6 +2,7 @@ package com.solidaridadCompartida.solidaridadCompartida.service;
 
 import com.solidaridadCompartida.solidaridadCompartida.entity.Beneficiary;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Donor;
+import com.solidaridadCompartida.solidaridadCompartida.entity.Image;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Petition;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.repository.BeneficiaryRepository;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PetitionService {
@@ -27,9 +29,14 @@ public class PetitionService {
     @Autowired
     private DonorRepository donorRepository;
 
+    
+     @Autowired
+    private ImageService imageServ;
+     
+     
     @Transactional
     public void createPetition(String id, Boolean voluntary, String voluntaryType,
-            String petitionType) throws MyException {
+            String petitionType, MultipartFile file) throws MyException {
 
         Beneficiary beneficiary = beneficiaryRepository.findById(id).get();
 
@@ -45,7 +52,10 @@ public class PetitionService {
         petition.setVoluntary(voluntary);
         petition.setVoluntaryType(voluntaryType);
         petition.setPetitionType(petitionType);
-        petition.setImage(null);
+        
+        //ACA GUARDAR ALGUNA IMAGEN QUE SEA NORMALIZADA ´PARA TODOS
+        Image image=imageServ.saveImage(file);
+        petition.setImage(image);
         //petition.setImage(image); CARGAR UNA IMAGEN QUE PUESA SER NEUTRAL DESDE EL PRINCIPIO
 
         petitionRepository.save(petition);
@@ -84,32 +94,54 @@ public class PetitionService {
 
     @Transactional
     public void updatePetition(String id, Beneficiary beneficiary, Boolean voluntary, String voluntaryType,
-            String petitionType, Boolean alta) throws MyException {
+            String petitionType, Boolean alta,  MultipartFile file, String idImage) throws MyException {
 
         validatePetition(beneficiary, voluntary, voluntaryType, petitionType);
 
         Optional<Petition> respuestaPet = petitionRepository.findById(id);
 
         if (respuestaPet.isPresent()) {
+            
             Petition petition = respuestaPet.get();
-            petition.setVoluntary(voluntary);
+            
+            if (petition.getDonor()==null){
+             petition.setVoluntary(voluntary);
             petition.setVoluntaryType(voluntaryType);
             petition.setPetitionType(petitionType);
+            petitionRepository.save(petition);   
+              
+            }else{
+               
+           // String idImage = null;
+            if (petition.getImage() != null) {
+                idImage = petition.getImage().getIdImage();
+            }
 
-            petitionRepository.save(petition);
+            Image image = imageServ.updateImage(file, idImage);
+            petition.setImage(image);
+               
+            }
+            
         }
 
     }
-
+    
     @Transactional
-    public void softDeletePetition(String id) {
-        Optional<Petition> respuestaPet = petitionRepository.findById(id);
-        if (respuestaPet.isPresent()) {
-            Petition petition = respuestaPet.get();
-            petition.setAlta(Boolean.FALSE);
+    public void aceptationDonor(String id, Boolean alta, MultipartFile file, Donor donor, 
+            Boolean aceptation) throws MyException{
+        
+        Optional <Petition> respuestaPet=petitionRepository.findById(id);
+        if (respuestaPet.isPresent()){
+            Petition petition=respuestaPet.get();
+            
+            petition.setDonor(donor);
+            petition.setAceptation(Boolean.TRUE);
+                        
             petitionRepository.save(petition);
         }
+        
     }
+    
 
     //click aceptar del beneficiario desencadena esto
     public void matchDonor(String id, Donor donor) {
@@ -145,6 +177,19 @@ public class PetitionService {
             }
         }
     }
+    
+        @Transactional
+    public void softDeletePetition(String id) {
+        Optional<Petition> respuestaPet = petitionRepository.findById(id);
+        if (respuestaPet.isPresent()) {
+            Petition petition = respuestaPet.get();
+            petition.setAlta(Boolean.FALSE);
+            petitionRepository.save(petition);
+        }
+    }
+    
+    
+    
 }
 
 
