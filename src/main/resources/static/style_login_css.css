@@ -263,6 +263,49 @@ main {
 }
 
 
+/* css index for Donor-----------------------*/
+
+#containerDonnor {
+  display: flex;
+
+}
+
+.card-title {
+
+  color: #d8363a;
+}
+
+#jugueteImg {
+  margin: auto;
+  width: 100%;
+  height: 200px;
+}
+
+#cardDonnor {
+  float: left;
+  margin: 3px;
+  margin-right: 5px;
+}
+
+#buttonInfoCard {
+  background-color: #ee7c4a;
+  padding: 5px;
+}
+
+#containerDonnorR {
+  margin-top: 3px;
+}
     
     
-    
+#textRoute{ 
+    padding-left: 20px; 
+    color:white;
+
+} 
+
+#textRoute:hover{
+    color:black;
+}
+
+#titleForDonnor{
+padding-right: 4px}
