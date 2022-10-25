@@ -1,4 +1,215 @@
+ 
 <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" th:href="@{/style_login_css.css}">
+        <link href="style.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+
+    <body class="body">
+
+        <header>
+
+
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" aria-label="Offcanvas navbar large">
+                <div class="container-fluid" id="navbar">
+                    <a class="navbar-brand" id="tit-navbar" href="#"> Solaridad compartida</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2"
+                         aria-labelledby="offcanvasNavbar2Label">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" th:href="@{/login/}">Iniciar sesion</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" th:href="@{/beneficiary/register}" >Registrarse como Beneficiario</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" th:href="@{/donor/register}" >Registrarse como Donador</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+            <div class="blocks">
+                <h1 class="subnav-hero-headline">Conexiones<small> como</small></h1>
+                <ul class="subnav-hero-subnav">
+                    <li><a href="#" class="op">Beneficiario!</a></li>
+                    <li><a href="#" class="op">Donante!</a></li>
+                    <li><a target="_blank" href="https://zurb.com/responsive" class="op">Just do it!</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="container py-5" id="mainFormBeneficiary">
+
+
+
+            <div class="row" data-masonry='{"percentPosition": true }'>
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card">
+                        <img th:src="@{/images/niños.png}" class="img-fluid rounded-start">
+
+                        <title>Placeholder</title>
+
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">Casa de estudio "Mis Letras"</h5>
+                            <p class="card-text">Ayuda escolar de los voluntarios...
+                                Donde los jovenes refuezan los contenidos visto en la escuela.</p>
+                            <p class="card-text"><small class="text-muted">Julio, Lunes 11 del 2022</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card p-3">
+                        <figure class="p-3 mb-0">
+                            <blockquote class="blockquote">
+                                <p>Tu valioso granito de arena es un aporte gigante para nuestra comunidad...</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer mb-0 text-muted">
+                                Cada paso  <cite title="Source Title">es una huella</cite>
+                                <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6"
+                                                                                        dy=".3em"><img src="/images/manosLove.png"> </text>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card">
+
+                        <title>Placeholder</title>
+                        <img src="/images/comedor.png"> </text>
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">Comedor "Cielito"</h5>
+                            <p class="card-text">Gracias a tu ayuda hoy estamos más fuertes!.
+                                Ciento de personas se alimentan cada día.</p>
+                            <p class="card-text"><small class="text-muted">Agosto, Sabado 15 del 2022</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card text-bg-primary text-center p-3">
+                        <figure class="mb-0">
+                            <blockquote class="blockquote">
+                                <p>Ayudanos a Ayudar !</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer mb-0 text-white">
+                                Cuando unos Dan... <cite title="Source Title">Otros Reciben</cite>
+                                <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6"
+                                                                                        dy=".3em"><img src="/images/manos.png"> </text>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4">
+
+
+                    <div class="card">
+
+                        <img src="/images/caritas.png"> 
+                        <title>Placeholder</title>
+                        <rect width="100%" height="200%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6"
+                                                                                dy=".3em"></text>
+
+
+                    </div>
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Fundacion "Cáritas"</h5>
+                            <p class="card-text">Ayudamos a colaborar a está red de ayuda!</p>
+                            <p class="card-text"><small class="text-muted">Septiembre, Martes 20 del 2022</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card p-3 text-end">
+                        <figure class="mb-0">
+                            <blockquote class="blockquote">
+                                <p>Tu amor se multiplica!</p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer mb-0 text-muted">
+                                Compartí tu <cite title="Source Title">felicidad</cite>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <rect width="100%" height="200%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+                            <img src="/images/genteFeliz.png"> </text>
+                            <h5 class="card-title">Ser Voluntario</h5>
+                            <p class="card-text">Es un acto de amor muy significativo... Es donar tu tiempo, tus conocimientos y sobre todo tu cariño... A las personas que más te necesitan</p>
+                            <p class="card-text"><small class="text-muted">Septiembre, Jueves 7 del 2022</small></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer class="footer" >
+            <div>
+
+                <p class="textFooter">&copy; 2022 Solaridad compartida. </p>
+
+
+            </div>
+
+
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -203,4 +414,8 @@
 
     </body>
 
-</html>
+</html>-->
+
+
+
+
