@@ -29,5 +29,5 @@ public List<Donor> searchByType(@Param("donor_type") String donor_type);
 
 public List<Donor> searchByVoluntary(@Param("voluntary") Integer voluntary);
 
-    
+   
 }

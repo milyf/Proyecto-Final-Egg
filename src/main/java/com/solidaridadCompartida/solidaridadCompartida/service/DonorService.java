@@ -1,10 +1,12 @@
 
 package com.solidaridadCompartida.solidaridadCompartida.service;
 
+import com.solidaridadCompartida.solidaridadCompartida.entity.Beneficiary;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Donor;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Person;
 import com.solidaridadCompartida.solidaridadCompartida.enumeracion.Rol;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
+import com.solidaridadCompartida.solidaridadCompartida.repository.BeneficiaryRepository;
 import com.solidaridadCompartida.solidaridadCompartida.repository.DonorRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,8 @@ public class DonorService implements UserDetailsService {
     
 @Autowired
  private DonorRepository donorRepository;
+@Autowired
+ private BeneficiaryRepository beneficiaryrepository;
  
  @Transactional
  public void createDonor(String email, String password, String password2, String name, String donor_type, Integer voluntary) throws MyException {
@@ -205,6 +209,67 @@ return null;
 }
         
     }
+
+
+public List<Beneficiary> GetBeneficiaryByReq(String requirement) throws MyException{
+
+List<Beneficiary> beneficiaries = new ArrayList();
+ 
+ if(requirement.equals("voluntary")){
+     
+beneficiaries= beneficiaryrepository.searchByVoluntary(1);
+ 
+ }
+
+ else if(requirement.equals("toys")){
+     
+beneficiaries= beneficiaryrepository.searchByToys(1);
+ 
+ } else if (requirement.equals("clothing")){
+     
+beneficiaries= beneficiaryrepository.searchByClothing(1);
+ 
+ } else if(requirement.equals("food")){
+     
+beneficiaries= beneficiaryrepository.searchByFood(1);
+ } else if(requirement.equals("monetary_aid")){
+     
+beneficiaries= beneficiaryrepository.searchByMonetaryAid(1);
+ 
+ } else if(requirement.equals("school_supplies")){
+     
+beneficiaries= beneficiaryrepository.searchBySchoolSupplies(1);
+ 
+ } else if(requirement.equals("books")){
+     
+beneficiaries= beneficiaryrepository.searchByBooks(1);
+ 
+ } else if(requirement.equals("medical_supplies")){
+     
+beneficiaries= beneficiaryrepository.searchByMedicalSupplies(1);
+ 
+ } else if(requirement.equals("furnitures")){
+     
+beneficiaries= beneficiaryrepository.searchByFurnitures(1);
+ 
+ } else if(requirement.equals("legacies")){
+     
+beneficiaries= beneficiaryrepository.searchByLegacies(1);
+ 
+ } else {
+ 
+ 
+ throw new MyException("El requerimiento ingresado no existe");
+ 
+ 
+ }
+ 
+ 
+ return beneficiaries;
+
+}
+
+
 
     
 }

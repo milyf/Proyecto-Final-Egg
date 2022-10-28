@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,5 +85,18 @@ public String updateFormDonor(@RequestParam(required=false) String password, @Re
 return "redirect:/indexD?success=true";
 
 }  
+ @PreAuthorize("hasAnyRole('ROLE_DONOR')")
+ @GetMapping("/ListBeneficiaryByReq/{requirement}")
+ public String ListBeneficiaryByReq(@PathVariable String requirement, ModelMap model ){
+     
+     try { 
+         model.addAttribute("beneficiaries",donorservice.GetBeneficiaryByReq(requirement));
+         return "list_beneficiary_by_rq.html";
+     } catch (MyException ex) {
+          return "redirect:/indexD?errorReqNotFound=true"; 
+     }
+
+ 
+ }  
 
 }
