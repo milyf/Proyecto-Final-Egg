@@ -1,16 +1,155 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
     <head>
-        <title>TODO supply a title</title>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Beneficiario</title>
+        <link rel="stylesheet" href="/style_login_css.css"><!--su css es style_login_css.css-->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+        <style>
+            .titulo{
+                text-decoration: none;
+                color: black;
+            }
+
+            #posteo{
+                width: 4rem;
+            }
+            h5{
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                text-align: center;
+                color: #000;
+
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+
+        </style>
     </head>
-    <body>
-        <div>TODO write content B</div>
+
+    <body class="body" >
+
+        <header>
+
+            <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" aria-label="Offcanvas navbar large">
+                <div class="container-fluid" id="navbar">
+
+                    <a class="navbar-brand" id="tit-navbar" href="#"> </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+                        <span class="navbar-toggler-icon">SOLIDARIDAD COMPARTIDA</span>
+                    </button>
+
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2"
+                         aria-labelledby="offcanvasNavbar2Label">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                
+                                 <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page"  th:href="@{/beneficiary/post/__${beneficiary.id}__}">Mis posteos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" th:href="@{/beneficiary/profile/__${beneficiary.id}__}">Mi perfil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" th:href="@{/logout}" >Cerrar Sesión</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+
+
+
+
+            <div class="blocks">
+                <h1 class="subnav-hero-headline">Solidaridad Compartida te da la bienvenida❤...</h1>
+                <br>       
+                <h2 class="subnav-hero-headline"></h2><!--nombre del beneficiario-->
+                <br>
+                <br>
+                <!-- redirigir a la vista de posteos -->
+                <h1 class="subnav-hero-headline"></h1>
+            </div>
+        </header>
+
+
+        <main class="container py-5" id="mainFormBeneficiary" >
+
+            <div class="row" data-masonry='{"percentPosition": true }'>
+
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+                    <h6 class="border-bottom pb-2 mb-0">Queremos conocerte!!</h6>
+                    <div class="d-flex text-muted pt-3" >
+                        <img th:src="'data:image/png;base64,' + ${content}" 
+                             class="card-img-top" alt="Agrega una foto de tu organización" height="180px" width="130px" >
+
+                        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                            <div class="d-flex justify-content-between">
+                                <strong class="text-gray-dark">Sube una foto, pon el nombre de tu institución y haz una breve descripción,</strong>
+
+                            </div>
+                            <span class="d-block">Luego comparte tu publicación para hacer posible la magia!💫 </span>
+                   
+                            <a href="#" style="text-decoration: none;color: red">Mi perfil</a><!--link hacia el perfil del beneficiario-->
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!--section para posteos del B-->
+                    <h5><strong>Aquí encontraras todas tus publicaciones</strong></h5>
+                    <section class="row" >
+                        <div class="col-1"></div>
+                        <div class="col-lg-10">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img th:src="@{#}" alt="" id="posteo"><!--foto del beneficiario-->
+                                    <h4 class="card-title"> <a href="" class="titulo"></a> </h4><!--link del nombre del benefiaciario-->
+                                    <h6 ></h6><!--descripcion-->
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </section>
+                <!--fin section-->
+
+
+
+
+
+        </main>
+
+        <footer class="footer" >
+            <div>
+
+                <p class="textFooter">&copy; 2022 Solaridad compartida. </p>
+
+
+            </div>
+
+
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
     </body>
+
 </html>

@@ -58,5 +58,6 @@ public List<Beneficiary> searchByFurnitures(@Param("furnitures") Integer furnitu
 public List<Beneficiary> searchByLegacies(@Param("legacies") Integer legacies);
 
 
+
     
 }

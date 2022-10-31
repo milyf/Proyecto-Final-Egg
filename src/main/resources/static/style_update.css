@@ -167,3 +167,15 @@ main{
 
 }
 
+/*stylo edit perfil*/
+.hov{
+    
+    text-decoration: none;
+    color: #000;
+}
+.hov:hover{
+    color:red;
+    font-size:large;
+
+}
+

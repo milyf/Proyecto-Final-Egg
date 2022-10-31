@@ -29,7 +29,7 @@ public class DonorService implements UserDetailsService {
  private DonorRepository donorRepository;
 @Autowired
  private BeneficiaryRepository beneficiaryrepository;
- 
+
  @Transactional
  public void createDonor(String email, String password, String password2, String name, String donor_type, Integer voluntary) throws MyException {
  
@@ -44,9 +44,9 @@ donor.setName(name);
 donor.setDonor_type(donor_type);
 donor.setVoluntary(voluntary);
 donor.setRol(Rol.DONOR);
- donor.setAlta(Boolean.TRUE);
- 
- donorRepository.save(donor);
+donor.setAlta(Boolean.TRUE);
+
+donorRepository.save(donor);
  
  } 
 
@@ -71,7 +71,7 @@ if(response.isPresent()){
 
     Donor donor = response.get();
     donor.setName(name);
-    donor.setVoluntary(voluntary);
+    donor.setVoluntary(voluntary); 
     donorRepository.save(donor);
 
 } else {throw new MyException("");}

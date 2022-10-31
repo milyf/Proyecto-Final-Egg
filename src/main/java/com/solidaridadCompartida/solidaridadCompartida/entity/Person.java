@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import lombok.Data;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -20,7 +21,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) 
 @Data
 public class Person {
-    
     
    @Id
    @GeneratedValue(generator = "uuid")
@@ -34,6 +34,8 @@ public class Person {
    @Enumerated(EnumType.STRING)
     private Rol rol;
    
-    private Boolean alta;  
+    private Boolean alta;
     
+   @OneToOne
+   private Image image;
 }

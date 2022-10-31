@@ -3,6 +3,7 @@ package com.solidaridadCompartida.solidaridadCompartida.service;
 
 import com.solidaridadCompartida.solidaridadCompartida.entity.Beneficiary;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Donor;
+import com.solidaridadCompartida.solidaridadCompartida.entity.Image;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Person;
 import com.solidaridadCompartida.solidaridadCompartida.enumeracion.Rol;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
@@ -10,6 +11,7 @@ import com.solidaridadCompartida.solidaridadCompartida.repository.BeneficiaryRep
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +23,24 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class BeneficiaryService implements UserDetailsService {
     
  @Autowired
  private BeneficiaryRepository beneficiaryRepository;
+ @Autowired
+ private ImageService imageservice;
  
  @Transactional
- public void createBeneficiary(String email,String password,String password2,String name, String institution_type, Integer voluntary,Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies)throws MyException {
+ public void createBeneficiary(String email,String password,String password2,
+         String name, String institution_type, Integer voluntary,Integer toys, 
+         Integer clothing, Integer food, Integer monetary_aid, 
+         Integer school_supplies, Integer books, Integer medical_supplies, 
+         Integer furnitures, Integer legacies)throws MyException {
  
  validate(email,password,name);  
  checkPassword(password,password2);
@@ -52,6 +63,11 @@ public class BeneficiaryService implements UserDetailsService {
  beneficiary.setLegacies(legacies);
  beneficiary.setRol(Rol.BENEFICIARY);
  beneficiary.setAlta(Boolean.TRUE);
+ 
+ Image image = imageservice.saveUserDefault();
+ 
+ beneficiary.setImage(image);
+ 
  beneficiaryRepository.save(beneficiary);
  
  
@@ -70,7 +86,7 @@ public class BeneficiaryService implements UserDetailsService {
  
  }
  
- public void modifyBeneficiary(String email,String password,String name, Integer voluntary, Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies) throws MyException{
+ public void modifyBeneficiary(MultipartFile file, String email,String password,String name, Integer voluntary, Integer toys, Integer clothing, Integer food, Integer monetary_aid, Integer school_supplies, Integer books, Integer medical_supplies, Integer furnitures, Integer legacies) throws MyException{
  
  validate(email,password,name);    
  Optional<Beneficiary> response = beneficiaryRepository.searchByEmail(email);
@@ -89,8 +105,23 @@ if(response.isPresent()){
     beneficiary.setMedical_supplies(medical_supplies);
     beneficiary.setFurnitures(furnitures);
     beneficiary.setLegacies(legacies);
+    
+    String idImage=null;
+    
+    if(beneficiary.getImage() != null){
+        
+    idImage= beneficiary.getImage().getId();
+    
+    }
+    
+    Image image= imageservice.update(file, idImage);
+    beneficiary.setImage(image);
+    
     beneficiaryRepository.save(beneficiary);
 
+} 
+ else {
+    throw new MyException("");
 }
 
   
@@ -207,6 +238,22 @@ institutions_types.add("Merenderos");
 return institutions_types;
 
 } 
+ 
+ public Beneficiary getOne(String id) throws UsernameNotFoundException{
+     
+      Optional<Beneficiary> response = beneficiaryRepository.findById(id);
+   
+if(response.isPresent()){
+Beneficiary beneficiary = response.get();
+
+return beneficiary;
+   
+}else{
+
+throw new UsernameNotFoundException("El usuario no existe");
+
+}
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -221,12 +268,17 @@ List<GrantedAuthority> permissions = new ArrayList();
 GrantedAuthority p= new SimpleGrantedAuthority("ROLE_" + beneficiary.getRol().toString());
         
  permissions.add(p);
+ 
+ ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+ 
+ HttpSession session=attr.getRequest().getSession(true);
+ session.setAttribute("beneficiarysession", beneficiary);
         
 return new User(beneficiary.getEmail(),beneficiary.getPassword(),permissions);
    
 }else{
 
-return null;
+throw new UsernameNotFoundException("No se pudo cargar el usuario");
 
 }
     }

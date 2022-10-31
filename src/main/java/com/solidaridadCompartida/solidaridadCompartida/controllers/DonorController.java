@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/donor")
@@ -63,8 +64,12 @@ return "edit_donor.html";
 
 @PreAuthorize("hasAnyRole('ROLE_DONOR')")
 @PostMapping("/update/form")
-public String updateFormDonor(@RequestParam(required=false) String password, @RequestParam(required=false) String email,
-         @RequestParam(required=false) String name, @RequestParam(required=false) String donor_type, @RequestParam(required=false,defaultValue="0") Integer voluntary, ModelMap model){
+public String updateFormDonor(@RequestParam(required=false) String password, 
+        @RequestParam(required=false) String email,
+         @RequestParam(required=false) String name, 
+         @RequestParam(required=false) String donor_type, 
+         @RequestParam(required=false,defaultValue="0") Integer voluntary,
+         ModelMap model){
     
     try {
         donorservice.modifyDonor(email, password, name, voluntary);
