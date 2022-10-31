@@ -72,23 +72,19 @@
          
             <div class="form-group my-3" id="icon4">
                 <i class="fa-solid fa-rectangle-list" ></i>
-                <label for="text">Descripción: </label>
+                <label for="text">Descripción: Somos una organización sin fronteras dispuesta a ayudar  </label>
                 <h6 name="description"></h6>
             </div>
 
             <div class="form-group my-3" id="icon5">
                 <i class="fa-solid fa-list-check" ></i>
                 <label for="text">Tus necesidades:</label>
-                <ul name="">
-                    <li>
-                        #
+                <ul>
+                    <li th:each="requirement:${requirements}" th:text="${requirement}"> 
+                           
+                   
                     </li>
 
-                    <li>
-                    </li>
-
-                    <li>
-                    </li>
                 </ul>
             </div>
 

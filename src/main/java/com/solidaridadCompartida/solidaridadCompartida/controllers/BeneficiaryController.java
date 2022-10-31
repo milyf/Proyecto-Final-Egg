@@ -44,6 +44,7 @@ public class BeneficiaryController {
         model.addAttribute("name", beneficiary.getName());
         model.addAttribute("institution_type", beneficiary.getInstitution_type());
         model.addAttribute("email", beneficiary.getEmail());
+        model.addAttribute("requirements", beneficiaryservice.requirementsBeneficiary(id));
         return "profile_beneficiary.html";
 
     }
