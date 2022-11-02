@@ -244,9 +244,9 @@ public class BeneficiaryService implements UserDetailsService {
         }
     }
 
-    public List<String> requirementsBeneficiary(String id) {
+    public List<String> requirementsBeneficiary(Beneficiary beneficiary) {
 
-        Beneficiary beneficiary = this.getOne(id);
+       
 
         List<String> results = new ArrayList<String>();
 

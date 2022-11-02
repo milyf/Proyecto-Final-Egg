@@ -44,7 +44,7 @@ public class BeneficiaryController {
         model.addAttribute("name", beneficiary.getName());
         model.addAttribute("institution_type", beneficiary.getInstitution_type());
         model.addAttribute("email", beneficiary.getEmail());
-        model.addAttribute("requirements", beneficiaryservice.requirementsBeneficiary(id));
+        model.addAttribute("requirements", beneficiaryservice.requirementsBeneficiary(beneficiary));
         return "profile_beneficiary.html";
 
     }
@@ -109,7 +109,7 @@ public class BeneficiaryController {
     @GetMapping("/update")
     public String updateBeneficiary(ModelMap model, HttpSession session) {
 
-         Person person = (Person) session.getAttribute("personsession"); 
+        Person person = (Person) session.getAttribute("personsession"); 
         Beneficiary beneficiary = beneficiaryservice.getOne(person.getId());
         model.addAttribute("beneficiary", beneficiary);
         return "edit_beneficiary.html";
@@ -120,8 +120,8 @@ public class BeneficiaryController {
     @PostMapping("/update/form/{id}")
     public String updateFormBeneficiary(
             @PathVariable String id,
-            @RequestParam(required = false) String email,
-            @RequestParam(required = false) String password,
+            //@RequestParam(required = false) String email,
+           // @RequestParam(required = false) String password,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String institution_type,
             @RequestParam(required = false, defaultValue = "0") Integer voluntary,
@@ -134,10 +134,11 @@ public class BeneficiaryController {
             @RequestParam(required = false, defaultValue = "0") Integer medical_supplies,
             @RequestParam(required = false, defaultValue = "0") Integer furnitures,
             @RequestParam(required = false, defaultValue = "0") Integer legacies,
-            ModelMap model, MultipartFile file) {
-
+            ModelMap model, MultipartFile file,HttpSession session) {
+        Person person = (Person) session.getAttribute("personsession"); 
+        Beneficiary beneficiary = beneficiaryservice.getOne(person.getId());
         try {
-            beneficiaryservice.modifyBeneficiary(file, email, password, name,
+            beneficiaryservice.modifyBeneficiary(file, beneficiary.getEmail(),beneficiary.getPassword(), name,
                     voluntary, toys, clothing, food, monetary_aid, school_supplies,
                     books, medical_supplies, furnitures, legacies);
 
@@ -146,8 +147,7 @@ public class BeneficiaryController {
         } catch (MyException ex) {
 
             model.put("error", ex.getMessage());
-            model.put("emai", email);
-            model.put("password", password);
+           
             model.put("name", name);
 
             return "/update/form?error=true";

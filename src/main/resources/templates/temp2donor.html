@@ -35,30 +35,45 @@
 
             <table class="table table-striped  table-hover">
                 <h3 id="title">Beneficiario</h3>
-
-      <thead>
+                <thead>
                     <tr>
                         <td><strong>Nombre de Institución</strong></td>
                         <td><strong>Tipo de Institución</strong></td>
-                        <td><strong>Necesidades</strong></td>
+                        <td><strong>Voluntarios</strong></td>
+                        <td><strong>Juguetes</strong></td>
+                        <td><strong>Prendas de Vestir</strong></td>
+                        <td><strong>Alimentos</strong></td>
+                        <td><strong>Ayuda Economica</strong></td>
+                        <td><strong>Útiles Escolares</strong></td>
+                        <td><strong>Libros</strong></td>
+                        <td><strong>Medicamentos</strong></td>
+                        <td><strong>Muebles</strong></td>
+                        <td><strong>Legados</strong></td>
+                        <td><strong>Alta</strong></td>
+                        <td><strong>Fecha de Alta</strong></td>
+                    
 
                     </tr>
                 </thead>
 
+
                 <tbody th:each="beneficiary:${beneficiaries}">
                     <tr>
-                        <!-- <td><img class="logo" alt="imagen de perfil" th:src= "@{/image/profile/__${beneficiary.id}__}"></img></td>-->
                         <td th:text="${beneficiary.name}"></td>
                         <td th:text="${beneficiary.institution_type}"></td>
-                        <td> <ul>
-                                <li th:each="requirement:${beneficiary.requirementsBeneficiary()}" th:text="${requirement}"> 
-
-
-                                </li>
-
-                            </ul> </td>
-
-
+                        <td th:text="${beneficiary.voluntary}"></td>
+                        <td th:text="${beneficiary.toys}"></td>
+                        <td th:text="${beneficiary.clothing}"></td>
+                        <td th:text="${beneficiary.food}"></td>
+                        <td th:text="${beneficiary.monetary_aid}"></td>
+                        <td th:text="${beneficiary.school_supplies}"></td>
+                        <td th:text="${beneficiary.books}"></td>
+                        <td th:text="${beneficiary.medical_supplies}"></td>
+                        <td th:text="${beneficiary.furnitures}"></td>
+                        <td th:text="${beneficiary.legacies}"></td>
+                        <td th:text="${beneficiary.alta}"></td>
+                        <td></td>
+                     
                     </tr>
 
                 </tbody>

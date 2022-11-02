@@ -1,0 +1,48 @@
+
+/*--------------- list beneficiary by req, donor-----*/
+
+
+.mainDonnor {
+  display: flex;
+  align-items: flex-start;
+
+}
+
+
+
+.titleTable {
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(245, 100, 100);
+
+}
+
+.card {
+  margin-bottom: 10px;
+  flex-direction: column;
+}
+
+#contCard {
+  background-color: #ffd6f3;
+  width: 75em;
+
+
+}
+
+#imgDonnor {
+  padding-left: 5em;
+  align-items: center;
+  size: 10em;
+}
+
+.card-title {
+  color: black;
+}
+
+#buttonDonar {
+  color: #0c0000;
+  background-color: #f86fff;
+  margin-left: 30em;
+  margin-top: 5em;
+}
+

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/style_list.css}">
+    <title>Solidaridad Compartida</title>
+    <style>
+        .hov{text-decoration: none;color: #000;}
+        .hov:hover{color:red;font-size:large;}
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header>
+        <div class="logo">
+            <img th:src="@{/images/register_logo_1.jpg}" alt="logo">
+            <h3 class="name-company">Solidaridad Compartida</h3>
+        </div>
+          <nav>
+            <a href="" class="link">Mis posteos</a>
+            <a  th:href="@{/beneficiary/profile/__${beneficiary.id}__}" class="link">Mi perfil</a>
+            <a th:href="@{/logout}" class="link">Cerrar Sesion</a>
+            <!--<a href="" class="link"></a>-->
+        </nav>
+    </header>
+    <!--header-->
+    <!--main-->
+    <main>
+    
+        <form th:action="@{/beneficiary/update/form/__${beneficiary.id}__}" method="POST" class="register2"
+                          enctype="multipart/form-data" >
+                        
+                        <input hidden th:value="${id}" name="id">
+            <!--<h3 id="title2"></h3>-->
+         
+                <h3 id="title2">Edita Tus datos</h3>
+                                  
+
+                <div class="form-group my-3">
+                    <label for="text">Cargar imagén</label>
+                    <input type="file" name="image" class="form-control">
+                   
+                    <a href="" class="hov">Eliminar</a>
+                </div>
+
+                <div class="form-group my-3">
+                    <label for="text">Nombre de institución</label>
+                    <input type="text" name="titulo" class="form-control" placeholder="Merendero Sonrisas / Escuela n°1">
+                   
+                    <a  th:value="${beneficiary.name}" class="hov">Eliminar</a>
+                </div>
+
+                <div class="form-group my-3">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="escuela@escuela.com">
+                    <a  th:value="${beneficiary.email}"class="hov">Eliminar</a>
+                </div>
+
+                 <!--<div class="form-group my-3">
+                    <label for="number">Teléfono</label>
+                    <input type="number" name="tel" class="form-control" placeholder="11 2356 8923">
+                    <a href="" class="hov">Eliminar</a>
+                </div>-->
+
+               <!-- <div class="form-group my-3">
+                    <label for="text">Dirección</label>
+                    <input type="text" name="address" class="form-control" placeholder="Av De Mayo 1000">
+                    <a href="" class="hov">Eliminar</a>
+                </div>-->
+
+                <div class="form-group my-3">
+                    <label for="text">Presentación</label>
+                    <textarea class="form-control" rows="3" name="cuerpo" placeholder="Breve descripción del establecimiento ej:somos un comedor de la provincia de bs as, con 300 chicos..."></textarea>
+                   
+                    <a href="" class="hov">Eliminar</a>
+                </div>
+
+                <div class="form-group my-3">
+                    <h6>Tus necesidades:</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="voluntary" value="1"
+                               id="voluntary">
+                        <label class="form-check-label" for="voluntary">
+                            Voluntarios
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="toys" value="1" id="toys">
+                        <label class="form-check-label" for="toys">
+                            Juguetes
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="clothing" value="1" id="clothing">
+                        <label class="form-check-label" for="clothing">
+                            Prendas de vestir
+                        </label>
+                    </div>
+                    
+                    
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="food" value="1" id="food">
+                        <label class="form-check-label" for="food">
+                            Alimentos
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="monetary_aid" value="1"
+                               id="monetary_aid">
+                        <label class="form-check-label" for="monetary_aid">
+                            Ayuda aconomica
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="school_supplies" value="1"
+                               id="school_supplies">
+                        <label class="form-check-label" for="school_supplies">
+                            Útiles escolares
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="books" value="1" id="books">
+                        <label class="form-check-label" for="books">
+                            Libros
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="medical_supplies" value="1"
+                               id="medical_supplies">
+                        <label class="form-check-label" for="medical_supplies">
+                            Medicamentos
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="furnitures" value="1"
+                               id="furnitures">
+                        <label class="form-check-label" for="furnitures">
+                            Muebles
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="legacies" value="1" id="legacies">
+                        <label class="form-check-label" for="legacies">
+                            Legado
+                        </label>
+                    </div>
+
+
+
+                </div>
+
+                <button type="submit" class="btn-primary"> Guardar </button>
+
+            </form>
+
+    </main>
+    <!--fin main-->
+
+<!--footer-->
+<footer>
+    <div>
+        <p>&copy; 2022 Solaridad compartida. </p>
+    </div>
+
+</footer>
+<!--fin footer-->
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+</body>
+</html>      
+
+
+
