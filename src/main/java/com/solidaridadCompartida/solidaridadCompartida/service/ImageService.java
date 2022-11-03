@@ -23,6 +23,8 @@ public class ImageService {
     
     @Autowired
     BeneficiaryRepository beneficiaryrepository;
+    
+    
     public Image Save(MultipartFile file) throws MyException{
     
     if(file!=null){
@@ -34,6 +36,7 @@ public class ImageService {
         image.setContent(file.getBytes());
         
         return imagerepository.save(image);
+        
     
     }catch(Exception e){
     
@@ -48,6 +51,12 @@ public class ImageService {
     
     }
     
+    public Image SaveEmpty(){
+    
+    Image image = new Image();
+    return imagerepository.save(image);
+    
+    }
     
     public Image update(MultipartFile file, String idImage) throws MyException{
     

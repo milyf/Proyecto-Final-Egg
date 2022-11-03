@@ -4,12 +4,14 @@ import com.solidaridadCompartida.solidaridadCompartida.entity.Beneficiary;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Donor;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Image;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Person;
+import com.solidaridadCompartida.solidaridadCompartida.entity.Post;
 import com.solidaridadCompartida.solidaridadCompartida.enumeracion.Rol;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.repository.BeneficiaryRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -302,6 +304,17 @@ public class BeneficiaryService implements UserDetailsService {
 
         return results;
 
+    }
+    
+    public void addPost(String idBeneficiary, Post post){
+    
+    Beneficiary beneficiary = this.getOne(idBeneficiary);
+    
+     Set<Post> posts = beneficiary.getPosts();
+     posts.add(post);
+     beneficiary.setPosts(posts);
+     beneficiaryRepository.save(beneficiary);
+    
     }
 
     @Override

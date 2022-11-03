@@ -2,11 +2,13 @@ package com.solidaridadCompartida.solidaridadCompartida.controllers;
 
 import com.solidaridadCompartida.solidaridadCompartida.entity.Beneficiary;
 import com.solidaridadCompartida.solidaridadCompartida.entity.Person;
+import com.solidaridadCompartida.solidaridadCompartida.entity.Post;
 import com.solidaridadCompartida.solidaridadCompartida.enumeracion.Rol;
 import com.solidaridadCompartida.solidaridadCompartida.excepciones.MyException;
 import com.solidaridadCompartida.solidaridadCompartida.service.BeneficiaryService;
 import com.solidaridadCompartida.solidaridadCompartida.service.ImageService;
 import com.solidaridadCompartida.solidaridadCompartida.service.PersonService;
+import com.solidaridadCompartida.solidaridadCompartida.service.PostService;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -33,6 +35,8 @@ public class BeneficiaryController {
     private PersonService personservice;
     @Autowired
     private ImageService imageservice;
+    @Autowired 
+    private PostService postservice;
 
     @GetMapping("/profile/{id}")
     public String profileBeneficiary(ModelMap model, @PathVariable String id, HttpSession session) {
@@ -49,19 +53,46 @@ public class BeneficiaryController {
 
     }
     
-        @GetMapping("/post/{id}")
-    public String postBeneficiary(ModelMap model, @PathVariable String id, HttpSession session) {
-
-        Beneficiary beneficiary = beneficiaryservice.getOne(id);
-        String content = imageservice.getImgData(beneficiary.getImage().getContent());
+        @GetMapping("/post")
+    public String postBeneficiary(ModelMap model, HttpSession session) {
         
-        model.addAttribute("content", content);
-        model.addAttribute("name", beneficiary.getName());
-        model.addAttribute("institution_type", beneficiary.getInstitution_type());
-        model.addAttribute("email", beneficiary.getEmail());
+        Person person = (Person) session.getAttribute("personsession"); 
+        Beneficiary beneficiary = beneficiaryservice.getOne(person.getId());
+        List<Post> posts = postservice.getBeneficiaryPosts(beneficiary);
         model.addAttribute("beneficiary", beneficiary);
-        return "edit_post_beneficiary.html";
+        model.addAttribute("posts",posts);
+        
+        return "beneficiary_show_posts.html";
 
+    }
+    
+    @GetMapping("/post/new")
+    public String newPost(ModelMap model,HttpSession session){
+            Person person = (Person) session.getAttribute("personsession"); 
+            Beneficiary beneficiary = beneficiaryservice.getOne(person.getId());
+            model.addAttribute("beneficiary",beneficiary);
+        
+    return "new_post_beneficiary.html";
+    }
+    
+    @PostMapping("/post/new/submit")
+    public String createPost(ModelMap model,HttpSession session, 
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String body,MultipartFile file){
+        Person person = (Person) session.getAttribute("personsession"); 
+        Beneficiary beneficiary = beneficiaryservice.getOne(person.getId());
+        Post post;
+        try {
+            post = postservice.createPost(title, body, beneficiary, file);
+            //beneficiaryservice.addPost(beneficiary.getId(), post);
+            return "redirect:/beneficiary/post?postNewSuccess=True";
+        } catch (MyException ex) {
+            model.addAttribute("title", title);
+            model.addAttribute("body", body);
+            model.put("error",ex.getMessage());
+            return "new_post_beneficiary.html";
+        }
+        
     }
 
     @GetMapping("/register")
@@ -120,8 +151,6 @@ public class BeneficiaryController {
     @PostMapping("/update/form/{id}")
     public String updateFormBeneficiary(
             @PathVariable String id,
-            //@RequestParam(required = false) String email,
-           // @RequestParam(required = false) String password,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String institution_type,
             @RequestParam(required = false, defaultValue = "0") Integer voluntary,

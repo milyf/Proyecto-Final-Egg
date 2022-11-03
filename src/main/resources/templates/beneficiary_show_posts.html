@@ -32,7 +32,7 @@
         </div>
         <nav>
             <a  th:href="@{/beneficiary/post}"class="link">Mis posteos</a>
-            <a href="" class="link">Mi perfil</a>
+            <a th:href="@{/beneficiary/profile/__${beneficiary.id}__}" class="link">Mi perfil</a>
             <a th:href="@{/logout}" class="link">Cerrar Sesion</a>
             <!--<a href="" class="link"></a>-->
         </nav>
@@ -42,53 +42,33 @@
     <main>
         <!--<h3 id="title2"></h3>-->
         <form class="register2" action="">
-          
 
-            <h3 id="title2">Tus datos</h3>
+            <a th:href="@{/beneficiary/post/new}" class="hov">Nueva publicación</a>   
             
-            <div class="form-group my-3" id="foto">
-                <img th:src="'data:image/png;base64,' + ${content}" alt="foto-Perfil"
-                    style="width: 65px;height: 70px;border-radius: 40px;">
-            </div>
-
-            <div class="form-group my-3" id="icon">
-                <i class="fa-solid fa-id-badge"></i>
-                <label th:text="${name}" for="text">Nombre: </label>
-                <h6 name="name"></h6>
-            </div>
-            
-                <div class="form-group my-3" id="icon3">
-                <i class="fa-solid fa-id-badge"></i>
-                <label th:text="${institution_type}" for="text">Tipo de Institución: </label>
-                <h6 name="name"></h6>
-            </div>
-
-            <div class="form-group my-3" id="icon1">
-                <i class="fa-regular fa-envelope"></i>
-                <label th:text="${email}" for="text">Email: </label>
-                <h6 name="email"></h6>
-            </div>
-
-         
-            <div class="form-group my-3" id="icon4">
-                <i class="fa-solid fa-rectangle-list" ></i>
-                <label for="text">Descripción: Somos una organización sin fronteras dispuesta a ayudar  </label>
-                <h6 name="description"></h6>
-            </div>
-
             <div class="form-group my-3" id="icon5">
-                <i class="fa-solid fa-list-check" ></i>
-                <label for="text">Tus necesidades:</label>
+                <i class="fa-solid fa-list-check" ></i> 
+                <label for="text">Tus publicaciones</label>
                 <ul>
-                    <li th:each="requirement:${requirements}" th:text="${requirement}"> 
-                           
+                    <li th:each="post:${posts}"> 
+                        <div class="d-flex text-muted pt-3" >
+                        <img th:src="'data:image/png;base64,' + ${post.getImgData()}" 
+                             class="logo" alt="Agrega una foto a tu publicación" height="180px" width="180px" >
+
+                        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                            <div class="d-flex justify-content-between">
+                                <strong class="text-gray-dark" th:text="${post.title}"></strong>
+
+                            </div>
+                            <span class="d-block" th:text="${post.body}"> </span>
                    
+                          <!--  <a href="#" style="text-decoration: none;color: red">Mi perfil</a><!--link hacia el perfil del beneficiario-->
+                        </div>
+                    </div>
                     </li>
 
                 </ul>
             </div>
 
-            <a th:href="@{/beneficiary/update}" class="hov">Editar perfil</a>            
         </form>
 
     </main>

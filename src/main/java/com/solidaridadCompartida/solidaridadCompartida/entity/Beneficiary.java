@@ -3,10 +3,13 @@ package com.solidaridadCompartida.solidaridadCompartida.entity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,8 +34,10 @@ public class Beneficiary extends Person {
     private Integer medical_supplies;
     private Integer furnitures;
     private Integer legacies;
+    @OneToMany(mappedBy="beneficiary")
+    private Set<Post> posts; 
 
-      public List<String> requirementsBeneficiary() {
+    public List<String> requirementsBeneficiary() {
 
        
 
@@ -92,7 +97,13 @@ public class Beneficiary extends Person {
 
     }
     
-
+    public String getImgData() {
+       Image image = this.getImage();
+       if (image != null){
+        return Base64.getMimeEncoder().encodeToString(image.getContent());
+       }
+       else {return null;}
+    } 
     
     
 }

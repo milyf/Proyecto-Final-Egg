@@ -1,0 +1,132 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" th:href="@{/style_login_css.css}">
+        <link rel="shortcut icon" href="favicon.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+
+    <body class="body">
+
+        <header>
+
+          <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" aria-label="Offcanvas navbar large">
+                <div class="container-fluid" id="navbar">
+                    <a class="navbar-brand" id="tit-navbar" href="#"> Solaridad compartida</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2"
+                         aria-labelledby="offcanvasNavbar2Label">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Mis posteos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" th:href="@{/beneficiary/profile/__${beneficiary.id}__}" >Mi perfil</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" th:href="@{/logout}" >Cerrar sesión</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        <main>
+            <title>Editar Usuario</title>
+
+            <div class="container">
+                <div class="abs-center">
+                    <!--   <a class="navbar-brand" href="#">
+                          <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                          BENEFICIARIO
+                      </a> -->
+
+                    <form th:action="@{/beneficiary/post/new/submit}" method="POST" class="border p-3 form"
+                          enctype="multipart/form-data" >
+                        
+                        <div class="form-group" id="formComplete">
+                            <h3 class="titRegistrer"> Ingrese los datos de la publicación </h1>
+                            
+                                 <div class="form-group my-3">
+                                     
+                                    <input type="file" class="form-control" name="file" 
+                                           >
+                                </div>
+
+
+                                <div class="form-group my-3">
+                                    <label for="text">Título</label>
+                                    <input type="text" class="form-control" name="title" placeholder="Gracias a todos!"
+                                           th:value="${title}">
+                                </div>
+
+                                <div class="form-group my-3">
+                                    <label for="text">Descripción</label>
+                                    <input type="text" class="form-control" name="body"
+                                           placeholder="Gracias a sus generosas colaboraciones pudimos celebrar un hermoso día." 
+                                           th:value="${body}">
+                                </div>
+                        </div>
+
+
+                                <button type="submit" class="btn btn-primary"> Publicar </button>
+                                </form>
+                                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                                    <div class="card-body">
+                                        <h5 class="card-title">Error</h5>
+                                        <p class="card-text" th:text="${error}"></p>
+                                    </div>
+                                </div>
+
+                                <div th:if="${sucess != null}" class="card text-white bg-success mt-3 mensajeExito" >
+                                    <div class="card-body">
+                                        <h5 class="card-title">sucess</h5>
+                                        <p class="card-text" th:text="${sucess}"></p>
+                                    </div>
+
+                                </div>
+
+                        </div>
+
+                </div>
+
+        </main>
+
+        <footer class="footer">
+            <div>
+
+                <p class="textFooter">&copy; 2022 Solaridad compartida. </p>
+
+
+            </div>
+
+
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+
+
+    </body>
+
+</html> 

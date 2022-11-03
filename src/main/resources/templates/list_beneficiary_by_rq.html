@@ -47,7 +47,17 @@
 
                 <tbody th:each="beneficiary:${beneficiaries}">
                     <tr>
-                        <!-- <td><img class="logo" alt="imagen de perfil" th:src= "@{/image/profile/__${beneficiary.id}__}"></img></td>-->
+                        <td >
+                            <img th:if="${beneficiary.image != null}" 
+                                 th:src="'data:image/png;base64,' + ${beneficiary.getImgData()}" 
+                                  class="logo" alt="Este usuario aún no ha subido imagen de perfil" 
+                                  height="180px" width="180px" >
+                            
+                            <img th:unless="${beneficiary.image != null}"  
+                                 th:src="@{/images/profile_default.png}" alt="logo"
+                                 class="logo" height="180px" width="180px">
+              
+                        </td>
                         <td th:text="${beneficiary.name}"></td>
                         <td th:text="${beneficiary.institution_type}"></td>
                         <td> <ul>
